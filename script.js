@@ -36,6 +36,7 @@ const addButton = document.querySelector(".add");
 
 const equalButton = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
+const negativeButton = document.querySelector(".negative-positive");
 
 
 function operate(operator,num1,num2) {
@@ -206,4 +207,14 @@ clearButton.addEventListener("click", () => {
         operator = "";
     }
     updateDisplay(firstNumber, operator, secondNumber);
-})
+});
+
+negativeButton.addEventListener("click", () => {
+    if (operator === "") {
+        firstNumber = firstNumber * -1;
+    }
+    else {
+        secondNumber = secondNumber * -1;
+    }
+    updateDisplay(firstNumber, operator, secondNumber);
+});
