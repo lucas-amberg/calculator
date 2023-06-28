@@ -1,0 +1,21 @@
+.main-calculator {
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+
+}
+
+.button-containers {
+    display: flex;
+}
+
+.num-container {
+
+}
+
+.operator-container {
+    display: flex;
+    flex-direction: column;
+}
