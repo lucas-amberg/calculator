@@ -179,6 +179,9 @@ divideButton.addEventListener("click", () => {
     else if (secondNumber === "") {
         return;
     }
+    else if (secondNumber === "0") {
+        return;
+    }
     else {
         firstNumber = operate(operator, firstNumber, secondNumber);
         operator = "/";
