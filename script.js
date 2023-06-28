@@ -10,11 +10,14 @@ function multiply(num1, num2) {
     return num1*num2;
 }
 function divide(num1, num2) {
+    if (num2 === 0 || num2 === "" || num2 === "0") {
+        return 0;
+    }
     return num1/num2;
 }
 
 let firstNumber = "0";
-let secondNumber = "0";
+let secondNumber = "";
 let operator = "";
 
 const display = document.querySelector(".display");
@@ -37,6 +40,7 @@ const addButton = document.querySelector(".add");
 const equalButton = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
 const negativeButton = document.querySelector(".negative-positive");
+const backspaceButton = document.querySelector(".backspace");
 
 function operate(operator,num1,num2) {
     num2 === "" ? num2 = 0 : num2 = num2;
@@ -67,6 +71,12 @@ function updateDisplay(num1, operator, num2) {
     }
     else if (operator !== "") {
         display.textContent = `${num1} ${operator} ${num2}`
+    }
+    if (display.textContent === "0") {
+        clearButton.textContent = "AC";
+    }
+    else {
+        clearButton.textContent = "C";
     }
 }
 
@@ -177,12 +187,6 @@ divideButton.addEventListener("click", () => {
         operator = "/";
         updateDisplay(firstNumber, operator, secondNumber);
     }
-    else if (secondNumber === "") {
-        return;
-    }
-    else if (secondNumber === "0") {
-        return;
-    }
     else {
         firstNumber = operate(operator, firstNumber, secondNumber);
         operator = "/";
@@ -204,11 +208,11 @@ equalButton.addEventListener("click", () => {
 });
 
 clearButton.addEventListener("click", () => {
-    if (operator !== "") {
+    if (operator !== "" && secondNumber !== "") {
         secondNumber = "";
     }
     else {
-        firstNumber = "";
+        firstNumber = "0";
         operator = "";
     }
     updateDisplay(firstNumber, operator, secondNumber);
@@ -223,3 +227,27 @@ negativeButton.addEventListener("click", () => {
     }
     updateDisplay(firstNumber, operator, secondNumber);
 });
+
+backspaceButton.addEventListener("click", () => {
+    if (firstNumber === "") {
+        firstNumber = 0;
+    }
+    else if (secondNumber !== "") {
+        if (secondNumber.length === 1) {
+            secondNumber = 0;
+        }
+        else {
+            secondNumber = secondNumber.toString().slice(0, -1);
+        }
+    }
+    else if (firstNumber === 0) {
+        firstNumber = 0;
+    }
+    else if (firstNumber.length === 1) {
+        firstNumber = 0;
+    }
+    else {
+        firstNumber = firstNumber.toString().slice(0, -1);
+    }
+    updateDisplay(firstNumber, operator, secondNumber);
+})
