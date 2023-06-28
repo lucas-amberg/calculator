@@ -1,5 +1,7 @@
 function add(num1, num2) {
-    return num1+num2;
+    newNum = parseInt(num1);
+    newNum2 = parseInt(num2);
+    return newNum+newNum2;
 }
 function subtract(num1, num2) {
     return num1-num2;
@@ -27,10 +29,19 @@ const sevenButton = document.querySelector(".button7");
 const eightButton = document.querySelector(".button8");
 const nineButton = document.querySelector(".button9");
 
+const divideButton = document.querySelector(".divide");
+const multiplyButton = document.querySelector(".multiply");
+const subtractButton = document.querySelector(".subtract");
+const addButton = document.querySelector(".add");
+
+const equalButton = document.querySelector(".equal");
+const clearButton = document.querySelector(".clear");
+
+
 function operate(operator,num1,num2) {
     switch (operator){
         case "+":
-            return add(num1,num2);
+            return add(+num1,num2);
         case "-":
             return subtract(num1,num2);
         case "*":
@@ -109,3 +120,87 @@ nineButton.addEventListener("click", () => {
     addNumberToVariable("9", operator);
     updateDisplay(firstNumber, operator, secondNumber);
 });
+
+//Operator button event listeners
+
+addButton.addEventListener("click", () => {
+    if (operator === "") {
+        operator = "+";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+    else if (secondNumber === "") {
+        return;
+    }
+    else {
+        firstNumber = operate(operator, firstNumber, secondNumber);
+        operator = "+";
+        secondNumber = "";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+});
+
+subtractButton.addEventListener("click", () => {
+    if (operator === "") {
+        operator = "-";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+    else if (secondNumber === "") {
+        return;
+    }
+    else {
+        firstNumber = operate(operator, firstNumber, secondNumber);
+        operator = "-";
+        secondNumber = "";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+});
+
+multiplyButton.addEventListener("click", () => {
+    if (operator === "") {
+        operator = "*";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+    else if (secondNumber === "") {
+        return;
+    }
+    else {
+        firstNumber = operate(operator, firstNumber, secondNumber);
+        operator = "*";
+        secondNumber = "";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+});
+
+divideButton.addEventListener("click", () => {
+    if (operator === "") {
+        operator = "/";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+    else if (secondNumber === "") {
+        return;
+    }
+    else {
+        firstNumber = operate(operator, firstNumber, secondNumber);
+        operator = "/";
+        secondNumber = "";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+});
+
+equalButton.addEventListener("click", () => {
+    firstNumber = operate(operator, firstNumber, secondNumber);
+    operator = "";
+    secondNumber = "";
+    updateDisplay(firstNumber, operator, secondNumber);
+});
+
+clearButton.addEventListener("click", () => {
+    if (operator !== "") {
+        secondNumber = "";
+    }
+    else {
+        firstNumber = "";
+        operator = "";
+    }
+    updateDisplay(firstNumber, operator, secondNumber);
+})
