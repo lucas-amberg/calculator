@@ -9,21 +9,25 @@ body {
     flex-direction: column;
     width: 400px;
     height: 520px;
-    border: black solid 3px;
+    border: #555555 solid 3px;
     align-items: center;
+    background-color: #000000;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 15px;
 }
 
 .display {
-    max-width: 360px;
-    min-width: 360px;
+    max-width: 336px;
+    min-width: 336px;
     height: 100px;
     border: black solid 3px;
     margin: 5px;
-    text-align: left;
+    text-align: right;
     padding: 10px;
     font-family: sans-serif;
     font-size: 60px;
     margin-top: 12px;
+    color: white;
 }
 
 .button-containers {
@@ -43,5 +47,23 @@ body {
 button {
     width: 70px;
     height: 70px;
-    font-size: 22px;
+    font-size: 27px;
+}
+
+.num-button {
+    background-color: #333333;
+    color: white;
+    border-radius: 35px;
+}
+
+.operator-button {
+    background-color: orange;
+    color: white;
+    border-radius: 35px;
+}
+
+.toperator-button {
+    background-color: #999999;
+    color: black;
+    border-radius: 35px;
 }

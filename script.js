@@ -38,8 +38,8 @@ const equalButton = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
 const negativeButton = document.querySelector(".negative-positive");
 
-
 function operate(operator,num1,num2) {
+    num2 === "" ? num2 = 0 : num2 = num2;
     switch (operator){
         case "+":
             return add(+num1,num2);
@@ -192,10 +192,15 @@ divideButton.addEventListener("click", () => {
 });
 
 equalButton.addEventListener("click", () => {
-    firstNumber = operate(operator, firstNumber, secondNumber);
-    operator = "";
-    secondNumber = "";
-    updateDisplay(firstNumber, operator, secondNumber);
+    if (operator !== "") {
+        firstNumber = operate(operator, firstNumber, secondNumber);
+        operator = "";
+        secondNumber = "";
+        updateDisplay(firstNumber, operator, secondNumber);
+    }
+    else {
+        return;
+    }
 });
 
 clearButton.addEventListener("click", () => {
