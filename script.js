@@ -1,19 +1,19 @@
 function add(num1, num2) {
-    newNum = parseInt(num1);
-    newNum2 = parseInt(num2);
-    return newNum+newNum2;
+    newNum = parseFloat(num1);
+    newNum2 = parseFloat(num2);
+    return checkAndRound(newNum + newNum2);
 }
 function subtract(num1, num2) {
-    return num1-num2;
+    return checkAndRound(num1-num2);
 }
 function multiply(num1, num2) {
-    return num1*num2;
+    return checkAndRound(num1*num2);
 }
 function divide(num1, num2) {
     if (num2 === 0 || num2 === "" || num2 === "0") {
         return 0;
     }
-    return num1/num2;
+    return checkAndRound(num1/num2);
 }
 
 let firstNumber = "0";
@@ -41,6 +41,8 @@ const equalButton = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
 const negativeButton = document.querySelector(".negative-positive");
 const backspaceButton = document.querySelector(".backspace");
+
+const decimalButton = document.querySelector(".decimal-button");
 
 function operate(operator,num1,num2) {
     num2 === "" ? num2 = 0 : num2 = num2;
@@ -77,6 +79,66 @@ function updateDisplay(num1, operator, num2) {
     }
     else {
         clearButton.textContent = "C";
+    }
+}
+
+function addDecimalToNum() {
+    if (operator !== "") {
+        for (let i = 0; i < secondNumber.toString().length; i++) {
+            if (secondNumber.toString()[i] === "." && secondNumber.toString()[secondNumber.toString().length - 1] !== ".") {
+                return;
+            }
+        }
+        if (secondNumber === "0" || secondNumber === "" || secondNumber === 0) {
+            secondNumber = "0.";
+        }
+        else {
+            if (secondNumber[secondNumber.length - 1] === ".") {
+                secondNumber = secondNumber.slice(0, secondNumber.length - 1);
+            }
+            else {
+                secondNumber = secondNumber.toString().concat(".");
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < firstNumber.toString().length; i++) {
+            if (firstNumber.toString()[i] === "." && firstNumber.toString()[firstNumber.toString().length - 1] !== ".") {
+                return;
+            }
+        }
+        if (firstNumber === "0" || firstNumber === "" || firstNumber === 0) {
+            firstNumber = "0.";
+        }
+        else {
+            if (firstNumber[firstNumber.length - 1] === ".") {
+                firstNumber = firstNumber.slice(0, firstNumber.length - 1);
+            }
+            else {
+                firstNumber = firstNumber.toString().concat(".");
+            }
+        }
+    }
+    updateDisplay(firstNumber, operator, secondNumber);
+}
+
+function checkAndRound(result) {
+    let decimalFound = false;
+    let decimalCount = 0;
+    for (let i = 0; i < result.toString().length; i++) {
+        if (result.toString()[i] === ".") {
+            decimalFound = true;
+            continue;
+        }
+        if (decimalFound === true) {
+            decimalCount++;
+        }
+    }
+    if (decimalCount > 6) {
+        return result.toFixed(6);
+    }
+    else {
+        return result;
     }
 }
 
@@ -251,3 +313,7 @@ backspaceButton.addEventListener("click", () => {
     }
     updateDisplay(firstNumber, operator, secondNumber);
 })
+
+decimalButton.addEventListener("click", () => {
+    addDecimalToNum();
+});
