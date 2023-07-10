@@ -34,16 +34,23 @@ body {
 
 .button-containers {
     display: flex;
-    padding: 20px
+    padding: 20px;
+    gap: 65px;
 }
 
 .num-container {
     justify-content: center;
+    gap: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 220px;
+    justify-content: flex-start;
 }
 
 .operator-container {
     display: flex;
     flex-direction: column;
+    gap: 3px;
 }
 
 button {
@@ -54,7 +61,8 @@ button {
 }
 
 .num-button {
-    background-color: #333333;
+    background-color: #444;
+    border: 0px solid #444;
     color: white;
     border-radius: 35px;
 }
@@ -63,10 +71,12 @@ button {
     background-color: orange;
     color: white;
     border-radius: 35px;
+    border: 0px;
 }
 
 .toperator-button {
     background-color: #999999;
     color: black;
     border-radius: 35px;
+    border: 0px;
 }
