@@ -134,8 +134,8 @@ function checkAndRound(result) {
             decimalCount++;
         }
     }
-    if (decimalCount > 6) {
-        return result.toFixed(6);
+    if (decimalCount > 4) {
+        return result.toFixed(4);
     }
     else {
         return result;
